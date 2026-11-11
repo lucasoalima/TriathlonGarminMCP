@@ -1,0 +1,31 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+build/
+dist/
+.Python
+
+# Ambientes / segredos
+.env
+.venv/
+venv/
+*.pem
+*.key
+.garminconnect*
+# NUNCA versionar tokens/credenciais de saúde
+
+# Testes / caches
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.coverage
+htmlcov/
+
+# SO / editor
+.DS_Store
+.fuse_hidden*
+.idea/
+.vscode/
+*.log

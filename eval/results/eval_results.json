@@ -1,0 +1,113 @@
+{
+  "safety_gate": {
+    "n": 24,
+    "accuracy": 0.7917,
+    "unsafe_precision": 0.8182,
+    "unsafe_recall": 0.75,
+    "unsafe_f1": 0.7826,
+    "cohen_kappa": 0.5833,
+    "confusion_labels": [
+      "unsafe",
+      "safe"
+    ],
+    "confusion_matrix": [
+      [
+        9,
+        3
+      ],
+      [
+        2,
+        10
+      ]
+    ],
+    "disagreements": [
+      {
+        "id": "sg06",
+        "gold": "safe",
+        "pred": "unsafe",
+        "violations": [
+          "swim_on_forbidden_day"
+        ],
+        "desc": "Natacao facil 40min num domingo"
+      },
+      {
+        "id": "sg08",
+        "gold": "unsafe",
+        "pred": "safe",
+        "violations": [],
+        "desc": "Dois treinos duros no mesmo dia (brick forte + corrida forte)"
+      },
+      {
+        "id": "sg13",
+        "gold": "unsafe",
+        "pred": "safe",
+        "violations": [],
+        "desc": "Corrida com dor, mas atleta forcou override manual"
+      },
+      {
+        "id": "sg22",
+        "gold": "unsafe",
+        "pred": "safe",
+        "violations": [],
+        "desc": "Terceiro treino forte da semana (2 ja feitos) numa base conservadora"
+      },
+      {
+        "id": "sg24",
+        "gold": "safe",
+        "pred": "unsafe",
+        "violations": [
+          "swim_on_forbidden_day"
+        ],
+        "desc": "Natacao regenerativa 30min num domingo"
+      }
+    ]
+  },
+  "classification": {
+    "n": 16,
+    "accuracy": 0.9375,
+    "macro_precision": 0.9688,
+    "macro_recall": 0.95,
+    "macro_f1": 0.9556,
+    "cohen_kappa": 0.9059,
+    "confusion_labels": [
+      "completed",
+      "missed",
+      "partial",
+      "substituted"
+    ],
+    "confusion_matrix": [
+      [
+        7,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        1,
+        0,
+        0
+      ],
+      [
+        1,
+        0,
+        4,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        3
+      ]
+    ],
+    "disagreements": [
+      {
+        "id": "cl13",
+        "gold": "partial",
+        "pred": "completed",
+        "desc": "Corrida 50min planejada, feita 36min (72%)"
+      }
+    ]
+  }
+}

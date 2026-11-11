@@ -1,0 +1,25 @@
+{
+  "n": 24,
+  "results": [
+    {
+      "approach": "engine (deterministico)",
+      "accuracy_vs_gold": 0.7917,
+      "kappa_vs_gold": 0.5833,
+      "agreement_vs_engine": 1.0,
+      "kappa_vs_engine": 1.0,
+      "unsafe_recall_vs_gold": 0.75,
+      "mean_latency_ms": 0.0,
+      "status": "run"
+    },
+    {
+      "approach": "fake_baseline",
+      "accuracy_vs_gold": 0.8333,
+      "kappa_vs_gold": 0.6667,
+      "agreement_vs_engine": 0.7917,
+      "kappa_vs_engine": 0.5714,
+      "unsafe_recall_vs_gold": 0.6667,
+      "mean_latency_ms": 0.0,
+      "status": "run"
+    }
+  ]
+}

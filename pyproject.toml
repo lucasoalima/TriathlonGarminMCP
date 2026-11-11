@@ -1,0 +1,30 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "triathlon-coach-eval"
+version = "0.1.0"
+description = "Camada determinística de coaching de triatlo (guardrails + auditoria) para agentes LLM, com harness de avaliação e comparação de modelos."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "Lucas Soares de Lima" }]
+keywords = ["llm", "agents", "mcp", "evaluation", "guardrails", "triathlon", "sports-science"]
+# O núcleo (motor determinístico + harness de avaliação) NÃO tem dependências de runtime.
+dependencies = []
+
+[project.optional-dependencies]
+claude = ["anthropic>=0.39"]          # backend ClaudeBackend (requer ANTHROPIC_API_KEY)
+dev = ["pytest>=8", "pytest-asyncio>=0.23"]
+# Ollama não precisa de dependência Python (usa HTTP via stdlib urllib).
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/triathlon_coach", "triathlon_coach_llm"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src", ".", "eval"]
+testpaths = ["tests"]
+asyncio_mode = "auto"
+asyncio_default_fixture_loop_scope = "function"
+filterwarnings = ["ignore::DeprecationWarning"]

@@ -1,0 +1,10 @@
+# Núcleo (motor determinístico + harness de avaliação): SEM dependências de runtime.
+# Tudo roda com a biblioteca padrão do Python 3.10+.
+#
+# Para desenvolvimento/testes:
+#   pip install -r requirements-dev.txt
+#
+# Para o backend Claude (opcional, comparação de modelos):
+#   pip install anthropic>=0.39
+#
+# Para o backend Ollama (opcional): instale o Ollama (https://ollama.com) — não requer pacote Python.
