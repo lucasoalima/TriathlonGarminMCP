@@ -1,0 +1,24 @@
+# dependências e build
+node_modules/
+dist/
+*.log
+
+# segredos / ambiente
+.env
+.env.*
+!.env.example
+
+# Android (Capacitor) — arquivos gerados
+mobile/android/build/
+mobile/android/.gradle/
+mobile/android/.idea/
+mobile/android/.artifacts/
+mobile/android/local.properties
+mobile/android/app/build/
+mobile/android/capacitor-cordova-android-plugins/build/
+
+# arquivos grandes / temporários
+*.zip
+.DS_Store
+Thumbs.db
+docs/readme-preview.html

@@ -1,0 +1,6 @@
+{
+  "appId": "com.copiloto.corpo",
+  "appName": "Copiloto do Corpo",
+  "webDir": "www",
+  "server": { "androidScheme": "https" }
+}

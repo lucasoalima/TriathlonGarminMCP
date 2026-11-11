@@ -1,0 +1,3 @@
+{ "name": "copiloto-app", "private": true, "version": "0.1.0",
+  "workspaces": ["packages/*"],
+  "scripts": { "verify": "node packages/shared/verify.mjs" } }

@@ -1,0 +1,200 @@
+// Modelo de dados do Copiloto do Corpo (PostgreSQL via Prisma).
+// Cobre: contas, consentimento, conexões, perfil (anamnese), plano, atividades (cru),
+// wellness (cru), estado de carga (calculado), zonas, prontidão/decisão e agendamento.
+
+generator client { provider = "prisma-client-js" }
+datasource db { provider = "postgresql"; url = env("DATABASE_URL") }
+
+enum AuthProvider   { EMAIL GOOGLE APPLE }
+enum DataProvider   { HEALTH_CONNECT APPLE_HEALTH AGGREGATOR GARMIN_DIRECT }
+enum Sport          { CORRIDA BIKE NATACAO FORCA DESCANSO OUTRO }
+enum PlanOrigin     { IMPORTADO GERADO ASSESSORIA }
+enum ReadinessState { GREEN GREEN_MINUS AMBER RED }
+
+model User {
+  id           String   @id @default(cuid())
+  email        String   @unique
+  authProvider AuthProvider @default(EMAIL)
+  locale       String   @default("pt-BR")
+  tz           String   @default("America/Sao_Paulo")
+  createdAt    DateTime @default(now())
+
+  consent      Consent?
+  profile      Profile?
+  connections  DeviceConnection[]
+  plans        Plan[]
+  activities   Activity[]
+  wellness     WellnessDay[]
+  loadStates   LoadState[]
+  readiness    ReadinessDay[]
+  zones        Zone[]
+  schedules    NotificationSchedule[]
+}
+
+model Consent {
+  id         String   @id @default(cuid())
+  userId     String   @unique
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  lgpd       Boolean  @default(false)
+  version    String
+  acceptedAt DateTime @default(now())
+  ip         String?
+}
+
+model DeviceConnection {
+  id           String   @id @default(cuid())
+  userId       String
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  provider     DataProvider
+  accessToken  String?  // criptografar em repouso
+  refreshToken String?  // criptografar em repouso
+  scopes       String[]
+  status       String   @default("connected")
+  lastSyncAt   DateTime?
+  createdAt    DateTime @default(now())
+  @@unique([userId, provider])
+}
+
+model Profile {
+  id               String   @id @default(cuid())
+  userId           String   @unique
+  user             User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  goalType         String            // prova|melhora|saude|retorno|peso
+  sports           Sport[]
+  multisport       Boolean  @default(false)
+  raceHas          Boolean  @default(false)
+  raceName         String?
+  raceDate         DateTime?
+  racePriority     String?
+  goalNoRace       String?           // base|manter|evoluir
+  phase            String   @default("base")
+  level            String?
+  daysPerWeek      String?
+  sessionsPerDay   String?
+  wakeTime         String?           // "06:00" (gatilho matinal)
+  longDay          String?
+  hasCoach         Boolean  @default(false)
+  coachMode        String?           // coexistir|substituir|montar
+  parq             Json?             // 7 respostas do PAR-Q+
+  medicalClearance Boolean  @default(false)
+  injuries         String[]
+  preferences      Json?             // autonomia, tom, unidades
+  updatedAt        DateTime @updatedAt
+}
+
+model Plan {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  origin    PlanOrigin @default(GERADO)
+  active    Boolean  @default(true)
+  createdAt DateTime @default(now())
+  sessions  PlannedSession[]
+}
+
+model PlannedSession {
+  id          String  @id @default(cuid())
+  planId      String
+  plan        Plan    @relation(fields: [planId], references: [id], onDelete: Cascade)
+  dow         Int     // 0=Dom .. 6=Sáb
+  ordem       Int     @default(0)
+  sport       Sport
+  type        String?
+  zone        String?
+  durationMin Int?
+  quality     Boolean @default(false)
+  @@index([planId, dow])
+}
+
+model Activity {
+  id          String   @id @default(cuid())
+  userId      String
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  externalId  String            // id da fonte (dedupe)
+  source      DataProvider
+  sport       Sport
+  startTime   DateTime
+  durationMin Int
+  distanceM   Float?
+  avgHr       Int?
+  maxHr       Int?
+  manual      Boolean  @default(false)
+  load        Float?            // carga calculada (TRIMP/TSS)
+  createdAt   DateTime @default(now())
+  @@unique([userId, externalId])
+  @@index([userId, startTime])
+}
+
+model WellnessDay {
+  id             String   @id @default(cuid())
+  userId         String
+  user           User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  date           DateTime @db.Date
+  sleepHours     Float?
+  sleepScore     Int?
+  sleepDeepMin   Int?
+  sleepRemMin    Int?
+  hrvWeekly      Int?              // ausente via Health Connect
+  hrvStatus      String?
+  hrvBaselineLow Int?
+  hrvBaselineUp  Int?
+  rhr            Int?
+  spo2           Int?
+  @@unique([userId, date])
+}
+
+model LoadState {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  date      DateTime @db.Date
+  loadToday Float
+  ctl       Float
+  atl       Float
+  tsb       Float
+  acwr      Float
+  monotony  Float
+  strain    Float
+  @@unique([userId, date])
+}
+
+model Zone {
+  id                String   @id @default(cuid())
+  userId            String
+  user              User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  sport             Sport
+  lthr              Int?
+  ftp               Int?
+  css               Float?
+  thresholdPaceSecKm Int?
+  hrMax             Int?
+  hrRest            Int?
+  zoneModel         String   @default("5z")
+  source            String   @default("estimado")  // informado|estimado
+  updatedAt         DateTime @updatedAt
+  @@unique([userId, sport])
+}
+
+model ReadinessDay {
+  id       String   @id @default(cuid())
+  userId   String
+  user     User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  date     DateTime @db.Date
+  score    Int
+  state    ReadinessState
+  flags    String[]
+  decision Json?             // decisão do dia (headline, sessões, week)
+  context  String?           // dormiu|30min|pulou|dor
+  @@unique([userId, date])
+}
+
+model NotificationSchedule {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  kind      String            // matinal|pos_treino
+  time      String?           // "06:00"
+  active    Boolean  @default(true)
+  lastRunAt DateTime?
+  @@unique([userId, kind])
+}

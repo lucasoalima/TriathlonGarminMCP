@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet data-dc-atomics>
+<meta name="design_doc_mode" content="canvas">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+html{background:#08080A}
+body{margin:0;background:#08080A;font-family:'Instrument Sans',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+[data-om-starter="ios-frame"] *{scrollbar-width:none;-ms-overflow-style:none}
+[data-om-starter="ios-frame"] *::-webkit-scrollbar{width:0;height:0;display:none}
+a{color:inherit;text-decoration:none}a:hover{color:#fff}
+input{font-family:inherit}
+input::placeholder{color:rgba(255,255,255,.28)}
+@keyframes sn-drift{0%,100%{transform:scale(1) translate3d(0,0,0)}33%{transform:scale(1.035) translate3d(1px,-1.5px,0)}66%{transform:scale(.985) translate3d(-1px,1px,0)}}
+@keyframes sn-pulse{0%,100%{transform:scale(1);filter:brightness(1)}50%{transform:scale(1.06);filter:brightness(1.22)}}
+@keyframes sn-still{0%,100%{transform:scale(1);filter:brightness(.92)}50%{transform:scale(1.012);filter:brightness(1)}}
+@keyframes sn-breathe{0%,100%{transform:scale(.94)}45%{transform:scale(1.09)}70%{transform:scale(1.02)}}
+@keyframes sn-analyze{0%{transform:rotate(0deg) scale(1)}50%{transform:rotate(180deg) scale(1.05)}100%{transform:rotate(360deg) scale(1)}}
+@keyframes sn-halo{0%,100%{opacity:.55;transform:scale(1)}50%{opacity:.95;transform:scale(1.18)}}
+@keyframes sn-halo-slow{0%,100%{opacity:.4;transform:scale(.96)}50%{opacity:.8;transform:scale(1.25)}}
+@keyframes sn-halo-min{0%,100%{opacity:.34;transform:scale(1)}50%{opacity:.46;transform:scale(1.05)}}
+@keyframes sn-in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+@keyframes sn-dot{0%,100%{opacity:.2;transform:translateY(0)}50%{opacity:1;transform:translateY(-2px)}}
+</style>
+</helmet>
+
+<section style="padding:64px 72px 8px;max-width:1560px">
+<div style="display:flex;align-items:center;gap:16px">
+<div style="position:relative;width:30px;height:30px;flex:none">
+<div style="position:absolute;inset:-45%;border-radius:50%;background:radial-gradient(circle,var(--st-glow,oklch(0.82 0.14 158/.4)) 0%,transparent 68%);filter:blur(5px);animation:var(--st-halo,sn-halo 7s ease-in-out infinite)"></div>
+<div style="position:absolute;inset:0;border-radius:50%;background:radial-gradient(circle at 34% 26%,rgba(255,255,255,.6) 0%,rgba(255,255,255,0) 44%),radial-gradient(circle at 50% 62%,var(--st,oklch(0.82 0.14 158)) 0%,rgba(0,0,0,.45) 92%);animation:var(--st-motion,sn-drift 9s ease-in-out infinite)"></div>
+</div>
+<div style="font:500 15px/1 'Instrument Sans',sans-serif;letter-spacing:.34em;color:#F4F3F0">SINAL</div>
+<div style="width:1px;height:16px;background:rgba(255,255,255,.12)"></div>
+<div style="font:400 13px/1 'JetBrains Mono',monospace;letter-spacing:.02em;color:rgba(255,255,255,.34)">o primeiro sistema operacional de IA para endurance</div>
+</div>
+<p style="margin:26px 0 0;max-width:640px;font:400 30px/1.28 'Instrument Serif',Georgia,serif;color:#F4F3F0;text-wrap:pretty">Não mostramos dados. Entregamos a decisão do dia — em uma conversa.</p>
+<p style="margin:14px 0 0;max-width:560px;font:400 14.5px/1.6 'Instrument Sans',sans-serif;color:rgba(255,255,255,.42);text-wrap:pretty">Redesign premium do app: o dashboard sai, a conversa vira o produto, e a cor deixa de decorar — ela passa a ser o estado do corpo.</p>
+</section>
+
+<section id="1a" style="padding:44px 72px 72px;scroll-margin-top:16px">
+<div style="display:flex;align-items:baseline;gap:10px;margin:0 0 26px">
+<a href="#1a" style="font:500 10px 'JetBrains Mono',monospace;padding:4px 8px;background:rgba(255,255,255,.08);color:#F4F3F0;border-radius:5px">1a</a>
+<span style="font:500 12.5px 'Instrument Sans',sans-serif;color:rgba(255,255,255,.55)">App SINAL — Chat, Insights e Plano · interativo</span>
+</div>
+<div style="display:flex;gap:64px;align-items:flex-start;flex-wrap:wrap">
+
+<div ref="{{ rootRef }}" style="flex:none;filter:drop-shadow(0 50px 90px rgba(0,0,0,.6))">
+<x-import component-from-global-scope="IOSDevice" from="./ios-frame.jsx" dark="{{ true }}" width="{{ 402 }}" height="{{ 874 }}" hint-size="402px,874px">
+<div style="height:100%;display:flex;flex-direction:column;position:relative;background:#08080A;overflow:hidden">
+
+<div style="position:absolute;top:-190px;left:50%;transform:translateX(-50%);width:520px;height:420px;border-radius:50%;background:radial-gradient(circle,var(--st-glow,oklch(0.82 0.14 158/.4)) 0%,transparent 66%);filter:blur(46px);opacity:.6;pointer-events:none;animation:var(--st-halo,sn-halo 7s ease-in-out infinite)"></div>
+
+<div style="position:relative;z-index:2;padding:56px 22px 0;flex:none">
+<div style="display:flex;align-items:center;justify-content:space-between;height:40px">
+<div style="display:flex;align-items:center;gap:9px">
+<div style="position:relative;width:15px;height:15px">
+<div style="position:absolute;inset:-50%;border-radius:50%;background:radial-gradient(circle,var(--st-glow,oklch(0.82 0.14 158/.4)) 0%,transparent 70%);filter:blur(3px)"></div>
+<div style="position:absolute;inset:0;border-radius:50%;background:radial-gradient(circle at 34% 26%,rgba(255,255,255,.6) 0%,rgba(255,255,255,0) 44%),radial-gradient(circle at 50% 62%,var(--st,oklch(0.82 0.14 158)) 0%,rgba(0,0,0,.45) 92%);animation:var(--st-motion,sn-drift 9s ease-in-out infinite)"></div>
+</div>
+<div style="font:500 11px/1 'Instrument Sans',sans-serif;letter-spacing:.3em;color:rgba(255,255,255,.82)">SINAL</div>
+</div>
+<div style="display:flex;flex-direction:column;gap:3.5px;align-items:flex-end;padding:8px 0 8px 8px;cursor:pointer">
+<div style="width:15px;height:1.5px;background:rgba(255,255,255,.4);border-radius:1px"></div>
+<div style="width:10px;height:1.5px;background:rgba(255,255,255,.4);border-radius:1px"></div>
+<div style="width:14px;height:1.5px;background:rgba(255,255,255,.4);border-radius:1px"></div>
+</div>
+</div>
+
+<div style="display:flex;gap:26px;margin-top:18px;padding-bottom:2px">
+<sc-if value="{{ isChat }}" hint-placeholder-val="{{ true }}"><div style="position:relative;padding-bottom:11px;font:500 14px/1 'Instrument Sans',sans-serif;color:#F4F3F0"><span>Chat</span><div style="position:absolute;left:0;right:0;bottom:0;height:1.5px;border-radius:2px;background:var(--st,oklch(0.82 0.14 158));box-shadow:0 0 12px var(--st-glow,oklch(0.82 0.14 158/.4))"></div></div></sc-if>
+<sc-if value="{{ notChat }}"><div onClick="{{ goChat }}" style="padding-bottom:11px;font:400 14px/1 'Instrument Sans',sans-serif;color:rgba(255,255,255,.34);cursor:pointer">Chat</div></sc-if>
+<sc-if value="{{ isInsights }}"><div style="position:relative;padding-bottom:11px;font:500 14px/1 'Instrument Sans',sans-serif;color:#F4F3F0"><span>Insights</span><div style="position:absolute;left:0;right:0;bottom:0;height:1.5px;border-radius:2px;background:var(--st,oklch(0.82 0.14 158));box-shadow:0 0 12px var(--st-glow,oklch(0.82 0.14 158/.4))"></div></div></sc-if>
+<sc-if value="{{ notInsights }}" hint-placeholder-val="{{ true }}"><div onClick="{{ goInsights }}" style="padding-bottom:11px;font:400 14px/1 'Instrument Sans',sans-serif;color:rgba(255,255,255,.34);cursor:pointer">Insights</div></sc-if>
+<sc-if value="{{ isPlano }}"><div style="position:relative;padding-bottom:11px;font:500 14px/1 'Instrument Sans',sans-serif;color:#F4F3F0"><span>Plano</span><div style="position:absolute;left:0;right:0;bottom:0;height:1.5px;border-radius:2px;background:var(--st,oklch(0.82 0.14 158));box-shadow:0 0 12px var(--st-glow,oklch(0.82 0.14 158/.4))"></div></div></sc-if>
+<sc-if value="{{ notPlano }}" hint-placeholder-val="{{ true }}"><div onClick="{{ goPlano }}" style="padding-bottom:11px;font:400 14px/1 'Instrument Sans',sans-serif;color:rgba(255,255,255,.34);cursor:pointer">Plano</div></sc-if>
+</div>
+<div style="height:1px;background:rgba(255,255,255,.07)"></div>
+</div>
+
+<div ref="{{ scrollRef }}" style="position:relative;z-index:1;flex:1;overflow:auto;padding:0 22px">
+
+<sc-if value="{{ isChat }}" hint-placeholder-val="{{ true }}">
+<div>
+<div style="padding:34px 0 0;display:flex;gap:16px;align-items:flex-start">
+<div style="position:relative;width:44px;height:44px;flex:none;margin-top:4px;cursor:pointer" onClick="{{ cycleState }}">
+<div style="position:absolute;inset:-55%;border-radius:50%;background:radial-gradient(circle,var(--st-glow,oklch(0.82 0.14 158/.4)) 0%,transparent 68%);filter:blur(8px);animation:var(--st-halo,sn-halo 7s ease-in-out infinite)"></div>
+<div style="position:absolute;inset:0;border-radius:50%;background:radial-gradient(circle at 34% 26%,rgba(255,255,255,.62) 0%,rgba(255,255,255,0) 46%),radial-gradient(circle at 50% 62%,var(--st,oklch(0.82 0.14 158)) 0%,rgba(0,0,0,.5) 94%);box-shadow:inset 0 0 12px rgba(255,255,255,.14);animation:var(--st-motion,sn-drift 9s ease-in-out infinite)"></div>
+</div>
+<div style="flex:1;min-width:0">
+<h1 style="margin:0;font:400 37px/1.06 'Instrument Serif',Georgia,serif;letter-spacing:-.01em;color:#F6F5F2;text-wrap:pretty">Bom dia, {{ name }}.</h1>
+<p style="margin:9px 0 0;font:400 15px/1.5 'Instrument Sans',sans-serif;color:rgba(255,255,255,.42)">Li seu sono, seu HRV e sua carga. Pergunte o que quiser.</p>
+</div>
+</div>
+
+<div style="display:inline-flex;align-items:center;gap:8px;margin-top:20px;padding:7px 12px 7px 10px;border-radius:999px;background:var(--st-tint,oklch(0.82 0.14 158/.08));border:1px solid var(--st-line,oklch(0.82 0.14 158/.2))">
+<div style="width:6px;height:6px;border-radius:50%;background:var(--st,oklch(0.82 0.14 158));box-shadow:0 0 8px var(--st,oklch(0.82 0.14 158));animation:var(--st-motion,sn-drift 9s ease-in-out infinite)"></div>
+<span style="font:400 10px/1 'JetBrains Mono',monospace;letter-spacing:.14em;color:var(--st,oklch(0.82 0.14 158))">{{ stateTag }}</span>
+</div>
+
+<div style="height:30px"></div>
+
+<sc-for list="{{ messages }}" as="m" hint-placeholder-count="2">
+<div style="animation:sn-in .5s cubic-bezier(.2,.7,.3,1) both">
+<sc-if value="{{ m.user }}">
+<div style="display:flex;justify-content:flex-end;margin-bottom:26px">
+<div style="max-width:80%">
+<div style="padding:13px 16px;border-radius:20px 20px 6px 20px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.07);backdrop-filter:blur(20px);font:400 15px/1.45 'Instrument Sans',sans-serif;color:rgba(255,255,255,.92);text-wrap:pretty">{{ m.text }}</div>
+<div style="margin-top:7px;text-align:right;font:300 9.5px/1 'JetBrains Mono',monospace;letter-spacing:.1em;color:rgba(255,255,255,.24)">{{ m.time }}</div>
+</div>
+</div>
+</sc-if>
+<sc-if value="{{ m.ai }}">
+<div style="margin-bottom:30px">
+<h2 style="margin:0;font:400 27px/1.18 'Instrument Serif',Georgia,serif;letter-spacing:-.01em;color:#F6F5F2;text-wrap:pretty">{{ m.head }}</h2>
+<p style="margin:12px 0 0;font:400 15px/1.62 'Instrument Sans',sans-serif;color:rgba(255,255,255,.6);text-wrap:pretty">{{ m.text }}</p>
+<sc-if value="{{ m.card }}">
+<div>
+<div style="margin:26px 0 0;height:1px;background:rgba(255,255,255,.07)"></div>
+<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:2px;padding:18px 0 20px">
+<div><div style="font:300 9px/1 'JetBrains Mono',monospace;letter-spacing:.12em;color:rgba(255,255,255,.3)">HRV</div><div style="margin-top:9px;font:400 17px/1 'Instrument Sans',sans-serif;color:rgba(255,255,255,.88)">62<span style="font-size:10px;color:rgba(255,255,255,.35)">ms</span></div><div style="margin-top:6px;font:300 9.5px/1 'JetBrains Mono',monospace;color:rgba(255,255,255,.3)">−12%</div></div>
+<div><div style="font:300 9px/1 'JetBrains Mono',monospace;letter-spacing:.12em;color:rgba(255,255,255,.3)">SONO</div><div style="margin-top:9px;font:400 17px/1 'Instrument Sans',sans-serif;color:rgba(255,255,255,.88)">6<span style="font-size:10px;color:rgba(255,255,255,.35)">h</span>32</div><div style="margin-top:6px;font:300 9.5px/1 'JetBrains Mono',monospace;color:rgba(255,255,255,.3)">−48min</div></div>
+<div><div style="font:300 9px/1 'JetBrains Mono',monospace;letter-spacing:.12em;color:rgba(255,255,255,.3)">CARGA</div><div style="margin-top:9px;font:400 17px/1 'Instrument Sans',sans-serif;color:rgba(255,255,255,.88)">780</div><div style="margin-top:6px;font:300 9.5px/1 'JetBrains Mono',monospace;color:rgba(255,255,255,.3)">alta</div></div>
+<div><div style="font:300 9px/1 'JetBrains Mono',monospace;letter-spacing:.12em;color:rgba(255,255,255,.3)">RECUP.</div><div style="margin-top:9px;font:400 17px/1 'Instrument Sans',sans-serif;color:var(--st,oklch(0.82 0.14 158))">68<span style="font-size:10px;opacity:.5">%</span></div><div style="margin-top:6px;font:300 9.5px/1 'JetBrains Mono',monospace;color:rgba(255,255,255,.3)">baixa</div></div>
+</div>
+<div style="height:1px;background:rgba(255,255,255,.07)"></div>
+<div style="margin-top:22px;padding:20px;border-radius:22px;background:linear-gradient(180deg,rgba(255,255,255,.055) 0%,rgba(255,255,255,.022) 100%);border:1px solid rgba(255,255,255,.075);backdrop-filter:blur(30px)">
+<div style="display:flex;align-items:center;gap:8px">
+<div style="width:5px;height:5px;border-radius:50%;background:var(--st,oklch(0.82 0.14 158));box-shadow:0 0 7px var(--st,oklch(0.82 0.14 158))"></div>
+<span style="font:400 9.5px/1 'JetBrains Mono',monospace;letter-spacing:.16em;color:rgba(255,255,255,.4)">DECISÃO DE HOJE</span>
+</div>
+<div style="margin-top:14px;font:400 21px/1.2 'Instrument Serif',Georgia,serif;color:#F6F5F2">Treino regenerativo</div>
+<div style="margin-top:8px;font:400 13.5px/1.5 'Instrument Sans',sans-serif;color:rgba(255,255,255,.5)">Bike Z2 · 60–75 min · movimento que acelera a recuperação, não a consome.</div>
+<sc-if value="{{ notAccepted }}" hint-placeholder-val="{{ true }}">
+<div style="display:flex;gap:9px;margin-top:18px">
+<div onClick="{{ accept }}" style="flex:1;text-align:center;padding:12px 0;border-radius:14px;background:var(--st,oklch(0.82 0.14 158));font:500 13.5px/1 'Instrument Sans',sans-serif;color:#08130D;cursor:pointer;box-shadow:0 6px 22px var(--st-glow,oklch(0.82 0.14 158/.4))">Aceitar</div>
+<div style="flex:1;text-align:center;padding:12px 0;border-radius:14px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);font:400 13.5px/1 'Instrument Sans',sans-serif;color:rgba(255,255,255,.62);cursor:pointer">Outra opção</div>
+</div>
+</sc-if>
+<sc-if value="{{ accepted }}">
+<div style="display:flex;align-items:center;gap:9px;margin-top:18px;padding:12px 14px;border-radius:14px;background:var(--st-tint,oklch(0.82 0.14 158/.08));border:1px solid var(--st-line,oklch(0.82 0.14 158/.2))">
+<div style="width:5px;height:5px;border-radius:50%;background:var(--st,oklch(0.82 0.14 158))"></div>
+<span style="font:400 10px/1 'JetBrains Mono',monospace;letter-spacing:.12em;color:var(--st,oklch(0.82 0.14 158))">NO PLANO DE HOJE · 07:30</span>
+</div>
+</sc-if>
+</div>
+<div style="margin-top:14px;font:300 9.5px/1.5 'JetBrains Mono',monospace;letter-spacing:.09em;color:rgba(255,255,255,.22)">LEITURA: HRV 7D · SONO 3N · CARGA 14D</div>
+</div>
+</sc-if>
+</div>
+</sc-if>
+</div>
+</sc-for>
+
+<sc-if value="{{ thinking }}">
+<div style="display:flex;align-items:center;gap:11px;margin-bottom:30px;animation:sn-in .4s ease both">
+<div style="display:flex;gap:4px">
+<div style="width:5px;height:5px;border-radius:50%;background:var(--st,oklch(0.72 0.14 300));animation:sn-dot 1.1s ease-in-out infinite"></div>
+<div style="width:5px;height:5px;border-radius:50%;background:var(--st,oklch(0.72 0.14 300));animation:sn-dot 1.1s ease-in-out .18s infinite"></div>
+<div style="width:5px;height:5px;border-radius:50%;background:var(--st,oklch(0.72 0.14 300));animation:sn-dot 1.1s ease-in-out .36s infinite"></div>
+</div>
+<span style="font:400 10px/1 'JetBrains Mono',monospace;letter-spacing:.14em;color:rgba(255,255,255,.4)">LENDO SEU CONTEXTO</span>
+</div>
+</sc-if>
+<div style="height:8px"></div>
+</div>
+</sc-if>
+
+<sc-if value="{{ isInsights }}">
+<div style="padding:34px 0 20px">
+<div style="font:400 9.5px/1 'JetBrains Mono',monospace;letter-spacing:.16em;color:rgba(255,255,255,.32)">PADRÕES · ÚLTIMAS 6 SEMANAS</div>
+<h1 style="margin:16px 0 0;font:400 33px/1.12 'Instrument Serif',Georgia,serif;letter-spacing:-.01em;color:#F6F5F2;text-wrap:pretty">A IA encontrou três coisas sobre você.</h1>
+<div style="margin-top:34px;height:1px;background:rgba(255,255,255,.07)"></div>
+
+<div style="padding:24px 0">
+<div style="display:flex;align-items:center;gap:8px"><div style="width:5px;height:5px;border-radius:50%;background:var(--st,oklch(0.82 0.14 158))"></div><span style="font:300 9.5px/1 'JetBrains Mono',monospace;letter-spacing:.14em;color:rgba(255,255,255,.34)">SONO · CONFIANÇA ALTA</span></div>
+<p style="margin:13px 0 0;font:400 20px/1.35 'Instrument Serif',Georgia,serif;color:#F1F0ED;text-wrap:pretty">Você dorme 41 minutos a mais nas noites em que treina antes das 8h.</p>
+<p style="margin:10px 0 0;font:400 13px/1.5 'Instrument Sans',sans-serif;color:rgba(255,255,255,.4)">18 ocorrências em 21 manhãs. É o seu maior alavancador de recuperação.</p>
+<div onClick="{{ goChat }}" style="display:inline-block;margin-top:15px;padding:9px 14px;border-radius:12px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);font:400 12.5px/1 'Instrument Sans',sans-serif;color:rgba(255,255,255,.7);cursor:pointer">Conversar sobre isso</div>
+</div>
+<div style="height:1px;background:rgba(255,255,255,.07)"></div>
+
+<div style="padding:24px 0">
+<div style="display:flex;align-items:center;gap:8px"><div style="width:5px;height:5px;border-radius:50%;background:oklch(0.76 0.10 245)"></div><span style="font:300 9.5px/1 'JetBrains Mono',monospace;letter-spacing:.14em;color:rgba(255,255,255,.34)">RECUPERAÇÃO · CONFIANÇA MÉDIA</span></div>
+<p style="margin:13px 0 0;font:400 20px/1.35 'Instrument Serif',Georgia,serif;color:#F1F0ED;text-wrap:pretty">Seu HRV sobe dois dias depois de treinos regenerativos — nunca no mesmo dia.</p>
+<p style="margin:10px 0 0;font:400 13px/1.5 'Instrument Sans',sans-serif;color:rgba(255,255,255,.4)">9 ocorrências. Por isso eu não julgo um dia leve pelo dia seguinte.</p>
+</div>
+<div style="height:1px;background:rgba(255,255,255,.07)"></div>
+
+<div style="padding:24px 0">
+<div style="display:flex;align-items:center;gap:8px"><div style="width:5px;height:5px;border-radius:50%;background:oklch(0.82 0.13 78)"></div><span style="font:300 9.5px/1 'JetBrains Mono',monospace;letter-spacing:.14em;color:rgba(255,255,255,.34)">CARGA · ATENÇÃO</span></div>
+<p style="margin:13px 0 0;font:400 20px/1.35 'Instrument Serif',Georgia,serif;color:#F1F0ED;text-wrap:pretty">Dois dias seguidos de carga alta derrubam sua recuperação em 14%.</p>
+<p style="margin:10px 0 0;font:400 13px/1.5 'Instrument Sans',sans-serif;color:rgba(255,255,255,.4)">6 ocorrências. Estou espaçando seus blocos fortes por isso.</p>
+</div>
+<div style="height:1px;background:rgba(255,255,255,.07)"></div>
+
+<div style="display:flex;align-items:center;gap:10px;padding:22px 0 0">
+<div style="width:5px;height:5px;border-radius:50%;background:oklch(0.72 0.14 300);animation:sn-dot 1.6s ease-in-out infinite"></div>
+<span style="font:300 10px/1.5 'JetBrains Mono',monospace;letter-spacing:.1em;color:rgba(255,255,255,.28)">2 HIPÓTESES AINDA EM OBSERVAÇÃO</span>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{ isPlano }}">
+<div style="padding:34px 0 20px">
+<div style="font:400 9.5px/1 'JetBrains Mono',monospace;letter-spacing:.16em;color:rgba(255,255,255,.32)">SEMANA 31 · BLOCO DE BASE</div>
+<h1 style="margin:16px 0 0;font:400 33px/1.12 'Instrument Serif',Georgia,serif;letter-spacing:-.01em;color:#F6F5F2;text-wrap:pretty">Construir base aeróbica sem custo de recuperação.</h1>
+<p style="margin:14px 0 0;font:400 14.5px/1.6 'Instrument Sans',sans-serif;color:rgba(255,255,255,.45);text-wrap:pretty">Uma missão por semana. Nada de calendário — só o próximo passo certo.</p>
+
+<div style="margin-top:30px;padding:20px;border-radius:22px;background:linear-gradient(180deg,rgba(255,255,255,.055) 0%,rgba(255,255,255,.022) 100%);border:1px solid rgba(255,255,255,.075);backdrop-filter:blur(30px)">
+<div style="display:flex;align-items:center;gap:8px"><div style="width:5px;height:5px;border-radius:50%;background:var(--st,oklch(0.82 0.14 158));box-shadow:0 0 7px var(--st,oklch(0.82 0.14 158))"></div><span style="font:400 9.5px/1 'JetBrains Mono',monospace;letter-spacing:.16em;color:rgba(255,255,255,.4)">PRÓXIMO PASSO · HOJE 07:30</span></div>
+<div style="margin-top:14px;font:400 21px/1.2 'Instrument Serif',Georgia,serif;color:#F6F5F2">Bike Z2 · 60–75 min</div>
+<div style="margin-top:8px;font:400 13.5px/1.5 'Instrument Sans',sans-serif;color:rgba(255,255,255,.5)">Zona 2 firme, cadência alta, sem picos. Termine achando que podia mais.</div>
+</div>
+
+<div style="margin-top:26px;display:grid;grid-template-columns:repeat(7,1fr);gap:6px">
+<div style="text-align:center"><div style="font:300 9px/1 'JetBrains Mono',monospace;color:rgba(255,255,255,.28)">S</div><div style="margin:10px auto 0;width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.3)"></div></div>
+<div style="text-align:center"><div style="font:300 9px/1 'JetBrains Mono',monospace;color:rgba(255,255,255,.28)">T</div><div style="margin:10px auto 0;width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.3)"></div></div>
+<div style="text-align:center"><div style="font:300 9px/1 'JetBrains Mono',monospace;color:rgba(255,255,255,.28)">Q</div><div style="margin:10px auto 0;width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.3)"></div></div>
+<div style="text-align:center"><div style="font:300 9px/1 'JetBrains Mono',monospace;color:rgba(255,255,255,.55)">Q</div><div style="margin:8px auto 0;width:10px;height:10px;border-radius:50%;border:1.5px solid var(--st,oklch(0.82 0.14 158));box-shadow:0 0 10px var(--st-glow,oklch(0.82 0.14 158/.4))"></div></div>
+<div style="text-align:center"><div style="font:300 9px/1 'JetBrains Mono',monospace;color:rgba(255,255,255,.28)">S</div><div style="margin:10px auto 0;width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.1)"></div></div>
+<div style="text-align:center"><div style="font:300 9px/1 'JetBrains Mono',monospace;color:rgba(255,255,255,.28)">S</div><div style="margin:10px auto 0;width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.1)"></div></div>
+<div style="text-align:center"><div style="font:300 9px/1 'JetBrains Mono',monospace;color:rgba(255,255,255,.28)">D</div><div style="margin:10px auto 0;width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.1)"></div></div>
+</div>
+
+<div style="margin-top:22px;display:flex;align-items:baseline;justify-content:space-between">
+<span style="font:400 12.5px/1 'Instrument Sans',sans-serif;color:rgba(255,255,255,.5)">3 de 5 sessões</span>
+<span style="font:300 9.5px/1 'JetBrains Mono',monospace;letter-spacing:.12em;color:rgba(255,255,255,.28)">NO RITMO</span>
+</div>
+<div style="margin-top:10px;height:1px;background:rgba(255,255,255,.1);position:relative"><div style="position:absolute;left:0;top:0;height:1px;width:60%;background:var(--st,oklch(0.82 0.14 158));box-shadow:0 0 8px var(--st-glow,oklch(0.82 0.14 158/.4))"></div></div>
+
+<div onClick="{{ goChat }}" style="margin-top:26px;text-align:center;padding:13px 0;border-radius:14px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);font:400 13.5px/1 'Instrument Sans',sans-serif;color:rgba(255,255,255,.68);cursor:pointer">Ajustar o plano com a IA</div>
+</div>
+</sc-if>
+
+</div>
+
+<div style="position:relative;z-index:2;flex:none;padding:12px 22px 40px;background:linear-gradient(180deg,rgba(8,8,10,0) 0%,rgba(8,8,10,.9) 26%,#08080A 60%)">
+<div style="display:flex;align-items:center;gap:10px;padding:8px 8px 8px 18px;border-radius:26px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);backdrop-filter:blur(30px)">
+<input value="{{ draft }}" onChange="{{ onDraft }}" onKeyDown="{{ onKey }}" placeholder="Pergunte ao seu corpo…" style="flex:1;min-width:0;background:transparent;border:none;outline:none;font:400 14.5px/1 'Instrument Sans',sans-serif;color:#F4F3F0;padding:9px 0" />
+<div onClick="{{ send }}" style="width:36px;height:36px;flex:none;border-radius:50%;background:var(--st,oklch(0.82 0.14 158));display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 4px 18px var(--st-glow,oklch(0.82 0.14 158/.4))">
+<svg width="15" height="15" viewBox="0 0 15 15" fill="none"><path d="M7.5 12.5V2.5M7.5 2.5L3 7M7.5 2.5L12 7" stroke="#08130D" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+</div>
+</div>
+</div>
+
+</div>
+</x-import>
+</div>
+
+<div style="flex:none;width:330px;padding-top:8px">
+<div style="font:400 9.5px/1 'JetBrains Mono',monospace;letter-spacing:.16em;color:rgba(255,255,255,.3)">ESTADO DO CORPO — TOQUE PARA TROCAR</div>
+<p style="margin:16px 0 0;font:400 22px/1.28 'Instrument Serif',Georgia,serif;color:#F4F3F0;text-wrap:pretty">A cor não decora. Ela é a leitura do seu corpo naquele instante.</p>
+<p style="margin:12px 0 26px;font:400 13.5px/1.6 'Instrument Sans',sans-serif;color:rgba(255,255,255,.4);text-wrap:pretty">Um único acento por vez atravessa o app inteiro — orbe, acento, brilho ambiente, botão. Cada estado tem seu próprio ritmo de movimento.</p>
+<div style="display:flex;flex-direction:column;gap:8px">
+<sc-for list="{{ chips }}" as="c" hint-placeholder-count="5">
+<div onClick="{{ c.onClick }}" style="{{ c.style }}">
+<div style="{{ c.dotStyle }}"></div>
+<div style="flex:1;min-width:0">
+<div style="{{ c.labelStyle }}">{{ c.label }}</div>
+<div style="font:400 12px/1.4 'Instrument Sans',sans-serif;color:rgba(255,255,255,.38)">{{ c.desc }}</div>
+</div>
+<div style="font:300 9px/1 'JetBrains Mono',monospace;letter-spacing:.08em;color:rgba(255,255,255,.24)">{{ c.motion }}</div>
+</div>
+</sc-for>
+</div>
+<div style="margin-top:28px;padding-top:20px;border-top:1px solid rgba(255,255,255,.08);font:400 12.5px/1.7 'Instrument Sans',sans-serif;color:rgba(255,255,255,.36);text-wrap:pretty">O que saiu do app antigo: a tab bar com botão flutuante verde, os ícones de métrica, o card de dados como protagonista. O que entrou: uma decisão em serifa grande, os números como rodapé silencioso e a conversa ocupando a tela toda.</div>
+</div>
+
+</div>
+</section>
+
+<section style="padding:8px 72px 96px;max-width:1560px">
+<div style="height:1px;background:rgba(255,255,255,.08)"></div>
+<div style="padding-top:44px;display:flex;gap:64px;flex-wrap:wrap;align-items:flex-start">
+
+<div style="flex:1;min-width:520px">
+<div style="font:400 9.5px/1 'JetBrains Mono',monospace;letter-spacing:.16em;color:rgba(255,255,255,.3)">SISTEMA DE ESTADOS</div>
+<div style="margin-top:26px;display:grid;grid-template-columns:repeat(5,1fr);gap:20px">
+<sc-for list="{{ board }}" as="b" hint-placeholder-count="5">
+<div>
+<div style="position:relative;width:64px;height:64px">
+<div style="{{ b.haloStyle }}"></div>
+<div style="{{ b.orbStyle }}"></div>
+</div>
+<div style="margin-top:18px;font:500 13px/1.2 'Instrument Sans',sans-serif;color:#F1F0ED">{{ b.label }}</div>
+<div style="margin-top:7px;font:400 12px/1.45 'Instrument Sans',sans-serif;color:rgba(255,255,255,.38)">{{ b.desc }}</div>
+<div style="margin-top:11px;font:300 9px/1.5 'JetBrains Mono',monospace;letter-spacing:.06em;color:rgba(255,255,255,.24)">{{ b.token }}<br>{{ b.motion }}</div>
+</div>
+</sc-for>
+</div>
+</div>
+
+<div style="flex:none;width:330px">
+<div style="font:400 9.5px/1 'JetBrains Mono',monospace;letter-spacing:.16em;color:rgba(255,255,255,.3)">TIPOGRAFIA & TOKENS</div>
+<div style="margin-top:24px;font:400 30px/1.1 'Instrument Serif',Georgia,serif;color:#F4F3F0">Decisão · 37/27/21</div>
+<div style="margin-top:14px;font:400 15px/1.5 'Instrument Sans',sans-serif;color:rgba(255,255,255,.62)">Corpo · Instrument Sans 15/13.5</div>
+<div style="margin-top:12px;font:300 10px/1 'JetBrains Mono',monospace;letter-spacing:.14em;color:rgba(255,255,255,.4)">DADO · JETBRAINS MONO 9.5</div>
+<div style="margin-top:26px;display:flex;flex-direction:column;gap:9px;font:300 10.5px/1.5 'JetBrains Mono',monospace;color:rgba(255,255,255,.34)">
+<div>SUPERFÍCIE · #08080A → white 3–6%</div>
+<div>RAIO · 14 · 22 · 26 · 999</div>
+<div>BLUR · 30px glass · 46px ambiente</div>
+<div>GRID · margem 22 · gutter 8 · ritmo 6</div>
+<div>MOTION · 0.5s cubic-bezier(.2,.7,.3,1)</div>
+</div>
+</div>
+
+</div>
+</section>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;athleteName&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Lucas&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Conteúdo&quot;},&quot;glow&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:60,&quot;min&quot;:0,&quot;max&quot;:100,&quot;step&quot;:5,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Ambiente&quot;,&quot;unit&quot;:&quot;%&quot;}}">
+const STATES = [
+  { id:'rec', label:'Recuperado', tag:'RECUPERADO · PRONTO PARA CARGA', desc:'Corpo pronto. Pode carregar.', motion:'deriva 9s', color:'oklch(0.82 0.14 158)', anim:'sn-drift 9s ease-in-out infinite', halo:'sn-halo 7s ease-in-out infinite', ga:0.40, ta:0.08, la:0.22 },
+  { id:'att', label:'Atenção', tag:'ATENÇÃO · SINAIS MISTOS', desc:'Sinais mistos. Reduza a intensidade.', motion:'pulso 3.6s', color:'oklch(0.82 0.13 78)', anim:'sn-pulse 3.6s ease-in-out infinite', halo:'sn-halo 3.6s ease-in-out infinite', ga:0.36, ta:0.075, la:0.22 },
+  { id:'low', label:'Recuperação baixa', tag:'RECUPERAÇÃO BAIXA · 68%', desc:'O descanso é a decisão.', motion:'quase estático', color:'oklch(0.65 0.15 24)', anim:'sn-still 11s ease-in-out infinite', halo:'sn-halo-min 11s ease-in-out infinite', ga:0.30, ta:0.07, la:0.2 },
+  { id:'cal', label:'Relaxamento', tag:'MODO CALMA · RESPIRE', desc:'Momento de baixar o sistema.', motion:'respiro 8s', color:'oklch(0.76 0.10 245)', anim:'sn-breathe 8s ease-in-out infinite', halo:'sn-halo-slow 8s ease-in-out infinite', ga:0.34, ta:0.075, la:0.2 },
+  { id:'ana', label:'IA analisando', tag:'ANALISANDO SEU CONTEXTO', desc:'A IA está lendo seu histórico.', motion:'giro 2.6s', color:'oklch(0.72 0.14 300)', anim:'sn-analyze 2.6s linear infinite', halo:'sn-halo 2.2s ease-in-out infinite', ga:0.38, ta:0.08, la:0.24 },
+];
+const alpha = (c, a) => c.replace(')', ' / ' + a + ')');
+
+class Component extends DCLogic {
+  state = {
+    tab: 'chat', st: 0, draft: '', thinking: false, accepted: false,
+    messages: [
+      { id:1, user:true, text:'Posso fazer um treino intenso hoje?', time:'09:36' },
+      { id:2, ai:true, card:true, head:'Hoje, não.', text:'Sua recuperação está em 68% e seu HRV caiu 12% em relação à sua linha de base. Um treino intenso agora custaria dois dias — e você tem um bloco forte na sexta.' },
+    ],
+  };
+
+  componentDidMount(){ this.applyVars(); }
+  componentDidUpdate(p, prev){
+    this.applyVars();
+    if (prev && prev.messages.length !== this.state.messages.length && this.scroll) {
+      this.scroll.scrollTo({ top: this.scroll.scrollHeight, behavior:'smooth' });
+    }
+  }
+
+  stateIndex(){
+    if (this.state.st !== null && this.state.st !== undefined) return this.state.st;
+    return 0;
+  }
+
+  applyVars(){
+    const el = this.root; if (!el) return;
+    const s = STATES[this.stateIndex()];
+    const g = (this.props.glow ?? 60) / 60;
+    el.style.setProperty('--st', s.color);
+    el.style.setProperty('--st-glow', alpha(s.color, Math.min(0.75, s.ga * g).toFixed(3)));
+    el.style.setProperty('--st-tint', alpha(s.color, s.ta));
+    el.style.setProperty('--st-line', alpha(s.color, s.la));
+    el.style.setProperty('--st-motion', s.anim);
+    el.style.setProperty('--st-halo', s.halo);
+  }
+
+  setSt = (i) => this.setState({ st: i });
+
+  send = () => {
+    const t = this.state.draft.trim(); if (!t) return;
+    const id = Date.now();
+    this.setState(s => ({
+      messages: [...s.messages, { id, user:true, text:t, time:'09:41' }],
+      draft:'', thinking:true, st:4, tab:'chat',
+    }));
+    setTimeout(() => this.setState(s => ({
+      thinking:false, st:0,
+      messages: [...s.messages, { id:id+1, ai:true, head:'Anotado — e isso muda a leitura.', text:'Recalculei com esse contexto. A decisão de hoje continua sendo movimento leve, mas antecipei sua sessão forte para quinta. Amanhã cedo eu te aviso se o seu HRV confirmar.' }],
+    })), 1900);
+  };
+
+  renderVals(){
+    const i = this.stateIndex();
+    const s = STATES[i];
+    return {
+      name: this.props.athleteName ?? 'Lucas',
+      rootRef: (el) => { this.root = el; if (el) this.applyVars(); },
+      scrollRef: (el) => { this.scroll = el; },
+      isChat: this.state.tab === 'chat', notChat: this.state.tab !== 'chat',
+      isInsights: this.state.tab === 'insights', notInsights: this.state.tab !== 'insights',
+      isPlano: this.state.tab === 'plano', notPlano: this.state.tab !== 'plano',
+      goChat: () => this.setState({ tab:'chat' }),
+      goInsights: () => this.setState({ tab:'insights' }),
+      goPlano: () => this.setState({ tab:'plano' }),
+      messages: this.state.messages,
+      thinking: this.state.thinking,
+      accepted: this.state.accepted, notAccepted: !this.state.accepted,
+      accept: () => this.setState({ accepted:true }),
+      draft: this.state.draft,
+      onDraft: (e) => this.setState({ draft: e.target.value }),
+      onKey: (e) => { if (e.key === 'Enter') this.send(); },
+      send: this.send,
+      stateTag: s.tag,
+      cycleState: () => this.setState({ st: (i + 1) % STATES.length }),
+      chips: STATES.map((st, n) => ({
+        label: st.label, desc: st.desc, motion: st.motion,
+        onClick: () => this.setSt(n),
+        style: {
+          display:'flex', alignItems:'center', gap:12, padding:'12px 14px', borderRadius:16, cursor:'pointer',
+          background: n === i ? alpha(st.color, 0.07) : 'rgba(255,255,255,0.028)',
+          border: '1px solid ' + (n === i ? alpha(st.color, 0.28) : 'rgba(255,255,255,0.06)'),
+          transition:'background .3s ease, border-color .3s ease',
+        },
+        dotStyle: {
+          width:9, height:9, borderRadius:'50%', flex:'none', background: st.color,
+          boxShadow: n === i ? '0 0 12px ' + alpha(st.color, 0.7) : 'none',
+          opacity: n === i ? 1 : 0.5, animation: n === i ? st.anim : 'none',
+        },
+        labelStyle: {
+          font:"500 13.5px/1.3 'Instrument Sans',sans-serif",
+          color: n === i ? '#F4F3F0' : 'rgba(255,255,255,0.6)',
+        },
+      })),
+      board: STATES.map((st) => ({
+        label: st.label, desc: st.desc, motion: st.motion.toUpperCase(),
+        token: st.color.replace('oklch', 'OKLCH'),
+        haloStyle: {
+          position:'absolute', inset:'-45%', borderRadius:'50%',
+          background:'radial-gradient(circle,' + alpha(st.color, st.ga) + ' 0%,transparent 68%)',
+          filter:'blur(8px)', animation: st.halo,
+        },
+        orbStyle: {
+          position:'absolute', inset:0, borderRadius:'50%',
+          background:'radial-gradient(circle at 34% 26%,rgba(255,255,255,.6) 0%,rgba(255,255,255,0) 46%),radial-gradient(circle at 50% 62%,' + st.color + ' 0%,rgba(0,0,0,.5) 94%)',
+          boxShadow:'inset 0 0 14px rgba(255,255,255,.14)', animation: st.anim,
+        },
+      })),
+    };
+  }
+}
+</script>
+</body>
+</html>

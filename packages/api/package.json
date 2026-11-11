@@ -1,0 +1,21 @@
+{
+  "name": "@copiloto/api",
+  "version": "0.1.0",
+  "type": "module",
+  "main": "src/server.ts",
+  "dependencies": {
+    "@copiloto/shared": "*",
+    "@prisma/client": "^5.19.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.5.0",
+    "prisma": "^5.19.0"
+  },
+  "comment": "Adicionar: framework HTTP (fastify), DB (pg/prisma), fila (redis), auth, SDK do LLM.",
+  "scripts": {
+    "demo": "node server.mjs",
+    "db:generate": "prisma generate",
+    "db:push": "prisma db push",
+    "db:studio": "prisma studio"
+  }
+}

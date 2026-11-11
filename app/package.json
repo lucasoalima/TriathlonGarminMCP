@@ -1,0 +1,8 @@
+{
+  "name": "copiloto-mobile",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": { "cap:add:android": "cap add android", "cap:sync": "cap sync", "cap:open": "cap open android" },
+  "dependencies": { "@capacitor/core": "^6.1.2", "@capacitor/android": "^6.1.2" },
+  "devDependencies": { "@capacitor/cli": "^6.1.2" }
+}

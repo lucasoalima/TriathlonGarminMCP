@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Copiloto do Corpo</string>
+    <string name="title_activity_main">Copiloto do Corpo</string>
+    <string name="package_name">com.copiloto.corpo</string>
+    <string name="custom_url_scheme">com.copiloto.corpo</string>
+</resources>

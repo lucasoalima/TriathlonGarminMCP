@@ -1,0 +1,36 @@
+{
+  "name": "Lucas",
+  "asOf": "2026-08-01",
+  "source": "garmin",
+  "hrv": {
+    "val": "34",
+    "unit": "ms",
+    "delta": -11,
+    "balanced": true,
+    "baseline": 38
+  },
+  "sleep": {
+    "val": "7h01",
+    "deltaMin": -39,
+    "score": 74
+  },
+  "load": {
+    "acute": 503,
+    "chronic": 241,
+    "acwr": 2,
+    "status": "muito alta",
+    "high": true
+  },
+  "recovery": {
+    "pct": 63,
+    "status": "baixa"
+  },
+  "lastWorkout": {
+    "name": "pedal em Z2 de 1h20",
+    "when": "hoje",
+    "sport": "pedal",
+    "hard": false,
+    "broke": false,
+    "pr": false
+  }
+}

@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Copiloto do Corpo</title>
+<style>
+:root{ color-scheme: dark; --bg:#0A0F0D; --bg2:#0C1512; --card:#101915; --card2:#0E1613; --line:rgba(255,255,255,.07); --tx:#EAF2EE; --mut:#8CA298; --grn:#34D399; --grn2:#22C55E; --amb:#F59E0B; --red:#F87171; }
+*{box-sizing:border-box}
+body{margin:0;background:#05080700;font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;line-height:1.45;color:var(--tx)}
+.phone{max-width:430px;margin:0 auto;min-height:100vh;background:
+  radial-gradient(120% 60% at 50% -10%, rgba(52,211,153,.10), transparent 60%),
+  radial-gradient(90% 40% at 50% 110%, rgba(245,158,11,.06), transparent 60%),
+  var(--bg);position:relative;overflow:hidden}
+.statusbar{display:flex;justify-content:space-between;align-items:center;padding:10px 20px 4px;font-size:12px;color:var(--mut);font-weight:600}
+.statusbar .r{display:flex;gap:5px;align-items:center}
+.screen{padding:6px 16px 96px}
+.hdr{display:flex;align-items:flex-start;justify-content:space-between;margin:8px 2px 14px}
+.hdr h1{font-size:22px;margin:0;font-weight:800;letter-spacing:-.3px}
+.hdr p{margin:2px 0 0;color:var(--mut);font-size:13px}
+.iconbtn{width:38px;height:38px;border-radius:12px;background:var(--card);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;font-size:16px}
+.card{background:linear-gradient(180deg,var(--card),var(--card2));border:1px solid var(--line);border-radius:20px;padding:16px 18px;margin:12px 0;box-shadow:0 8px 24px rgba(0,0,0,.25)}
+.hero{position:relative;overflow:hidden;text-align:center;padding:22px 20px}
+.hero .orb{position:absolute;inset:0;background:radial-gradient(50% 60% at 50% 45%,rgba(52,211,153,.30),transparent 62%);filter:blur(6px)}
+.hero h2{position:relative;font-size:19px;margin:0 0 6px;font-weight:800}
+.hero p{position:relative;color:var(--mut);font-size:13.5px;margin:0 auto 16px;max-width:270px}
+.ask{position:relative;display:flex;align-items:center;gap:10px;background:#0c130f;border:1px solid var(--line);border-radius:99px;padding:12px 16px;color:var(--mut);font-size:14px}
+.ask .mic{margin-left:auto;color:var(--grn)}
+.sec{display:flex;justify-content:space-between;align-items:center;margin:18px 4px 6px}
+.sec h3{font-size:15px;margin:0;font-weight:700}.sec .a{color:var(--mut);font-size:12px}
+.ring{position:relative;width:150px;height:150px;margin:0 auto}
+.ring .ctr{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.ring .ctr .n{font-size:40px;font-weight:800;line-height:1}
+.ring .ctr .l{font-size:12px;color:var(--mut);margin-top:2px}
+.chips{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:14px}
+.chip{background:#0c130f;border:1px solid var(--line);border-radius:16px;padding:12px 10px;text-align:center}
+.chip .ic{font-size:15px}.chip .v{font-size:17px;font-weight:800;margin:3px 0 0}.chip .k{font-size:11px;color:var(--mut)}.chip .s{font-size:11px;font-weight:700;margin-top:1px}
+.mrow{display:flex;align-items:center;gap:12px;padding:11px 0;border-bottom:1px solid var(--line)}.mrow:last-child{border:none}
+.mrow .mic{width:34px;height:34px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:15px;flex:0 0 auto}
+.mrow .ml{flex:1;font-size:14px}.mrow .mv{font-weight:800;font-size:14px}.mrow .ms{font-size:12px;font-weight:700;min-width:64px;text-align:right}
+.next{display:flex;align-items:center;gap:14px}
+.next .info{flex:1}.next .info .t{font-weight:800;font-size:15px;margin:0}.next .info .d{color:var(--mut);font-size:12.5px;margin:2px 0 0}
+.cring{position:relative;width:62px;height:62px;flex:0 0 auto}.cring .c{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800}
+.bubble{background:#0c130f;border:1px solid var(--line);border-radius:16px;border-top-left-radius:4px;padding:13px 15px;font-size:14px;margin:10px 0}
+.bubble.me{background:linear-gradient(180deg,#123a2b,#0f2f22);border-top-left-radius:16px;border-top-right-radius:4px;margin-left:auto;max-width:80%}
+.pills{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.pill{background:#0c130f;border:1px solid var(--line);border-radius:99px;padding:9px 14px;font-size:13px;color:var(--tx);cursor:pointer}
+.pill:hover{border-color:var(--grn)}.pill.on{background:var(--grn);color:#04120c;font-weight:700;border-color:var(--grn)}
+.tag{font-size:10px;font-weight:800;padding:2px 8px;border-radius:99px}.tag.g{background:rgba(52,211,153,.16);color:var(--grn)}.tag.a{background:rgba(245,158,11,.16);color:var(--amb)}.tag.r{background:rgba(248,113,113,.16);color:var(--red)}
+.spark{width:100%;height:60px;display:block;margin-top:6px}
+.btnp{display:block;width:100%;border:none;border-radius:14px;padding:14px;font-size:15px;font-weight:800;background:linear-gradient(90deg,var(--grn2),var(--grn));color:#04120c;cursor:pointer;margin-top:8px}
+.btng{background:transparent;border:1px solid var(--line);color:var(--tx);border-radius:12px;padding:10px 14px;font-size:13px;cursor:pointer}
+.tabs{position:fixed;left:50%;transform:translateX(-50%);bottom:0;width:100%;max-width:430px;display:flex;justify-content:space-around;background:rgba(9,14,12,.92);backdrop-filter:blur(12px);border-top:1px solid var(--line);padding:9px 6px 12px;z-index:20}
+.tab{display:flex;flex-direction:column;align-items:center;gap:3px;color:var(--mut);font-size:10.5px;cursor:pointer;flex:1;padding:4px 0}
+.tab .ti{font-size:19px}.tab.on{color:var(--grn)}
+.opts{display:flex;flex-wrap:wrap;gap:8px}.opt{background:#0c130f;border:1px solid var(--line);border-radius:12px;padding:9px 13px;font-size:13.5px;cursor:pointer}.opt.sel{background:var(--grn);color:#04120c;border-color:var(--grn);font-weight:700}
+.field label{display:block;font-size:12px;color:var(--mut);margin:8px 0 4px}
+.field input,.field textarea,.field select{width:100%;padding:11px 13px;background:#0c130f;border:1px solid var(--line);border-radius:12px;color:var(--tx);font-size:14px;font-family:inherit}
+textarea.big{min-height:120px;font-family:ui-monospace,Menlo,monospace;font-size:12.5px}
+table{width:100%;border-collapse:collapse;font-size:12.5px}th,td{padding:6px 5px;border-bottom:1px solid var(--line);text-align:left}th{color:var(--mut);font-size:10px;text-transform:uppercase;font-weight:700}
+.mut{color:var(--mut);font-size:12.5px}.loading{color:var(--mut);text-align:center;padding:40px 0}.err{background:rgba(248,113,113,.12);border:1px solid rgba(248,113,113,.3);color:#FCA5A5;border-radius:12px;padding:12px;font-size:13px}
+.day{background:#0c130f;border:1px solid var(--line);border-radius:14px;padding:11px 13px;margin:8px 0}.day .dn{font-weight:800;font-size:13px;color:var(--grn);margin:0 0 5px}
+.toast{color:var(--grn);font-size:13px;margin-top:8px;min-height:16px}
+.quote{position:relative;padding:18px;text-align:center}.quote .q{font-size:16px;font-weight:700;font-style:italic}.quote .by{color:var(--mut);font-size:12px;margin-top:6px}
+</style>
+</head>
+<body>
+<script>
+(function(){
+  var today = new Date().toISOString().slice(0,10);
+  var trend=[["2026-07-14",43,"BALANCED"],["2026-07-15",42,"BALANCED"],["2026-07-16",42,"BALANCED"],["2026-07-17",39,"BALANCED"],["2026-07-18",40,"BALANCED"],["2026-07-19",38,"BALANCED"],["2026-07-20",34,"UNBALANCED"],["2026-07-21",34,"UNBALANCED"],["2026-07-22",34,"UNBALANCED"],["2026-07-23",32,"UNBALANCED"],["2026-07-24",33,"UNBALANCED"],["2026-07-25",32,"UNBALANCED"],["2026-07-26",34,"UNBALANCED"],["2026-07-27",37,"BALANCED"],["2026-07-28",36,"BALANCED"]].map(function(t){return {date:t[0],weekly_avg_hrv_ms:t[1],status:t[2]};});
+  window.MOCK={
+    get_daily_training_brief:{date:today,training_load:{training_status_feedback:"UNPRODUCTIVE_3",tsb:-11,load_ratio:1.0,acwr_status:"OPTIMAL",vo2_max:49},sleep:{sleep_hours:6.5,sleep_score:56},hrv:{status:"BALANCED",last_night_avg_hrv_ms:42,weekly_avg_hrv_ms:36,baseline_balanced_low_ms:34,baseline_balanced_upper_ms:62}},
+    get_training_status:{training_status_feedback:"UNPRODUCTIVE_3",training_balance_feedback:"AEROBIC_HIGH_SHORTAGE",acwr_status:"OPTIMAL",load_ratio:1.0,vo2_max:49,tsb:-11},
+    get_hrv_trend:{trend:trend},
+    get_activities:function(){return {activities:[
+      {name:"Cotia - PEDAL Z2 45'",type:"cycling",start_time:today+" 17:05:56",duration_seconds:2700,avg_hr_bpm:143,max_hr_bpm:178},
+      {name:"Força",type:"strength_training",start_time:today+" 10:35:00",duration_seconds:2351,avg_hr_bpm:101,max_hr_bpm:138}
+    ]};},
+    get_lactate_threshold:{lactate_threshold_heart_rate_bpm:183,functional_threshold_power_watts:363,weight_kg:78,power_to_weight:4.653,speed_hr_date:"2026-07-22T20:58:31"},
+    get_cycling_ftp:{},
+    get_swim_css_pace:{confidence:"medium",estimated_css:{pace_per_100m:"2:48/100m"},training_paces:{recovery:{pace_per_100m:"3:03/100m"},endurance_z2:{pace_per_100m:"2:58/100m"},threshold_css:{pace_per_100m:"2:48/100m"},vo2_intervals:{pace_per_100m:"2:43/100m"}}},
+    get_heart_rates_summary:{max_heart_rate_bpm:168,resting_heart_rate_bpm:68,last_7_days_avg_resting_hr:64},
+    get_race_predictions:{predictions:{"10K":{time:"59:04",time_seconds:3544},half_marathon:{time:"2:15:47",time_seconds:8147},marathon:{time:"5:06:18",time_seconds:18378}}}
+  };
+  window.__coach=function(p){return "Com base no seu quadro de hoje (sono 6,5h, HRV voltando ao normal, status Improdutivo por falta de treino de limiar): a prioridade é encaixar 1 treino aeróbico de qualidade num dia bem descansado e não empilhar dias duros. Ação de hoje: se ainda for treinar, rodagem leve controlada; senão, recupere e durma melhor.";};
+})();
+</script>
+<div class="phone">
+  <div class="statusbar"><span>9:41</span><span class="r">▮▮▮ &#128246; &#128267;</span></div>
+  <div class="screen" id="screen"><div class="loading">Carregando…</div></div>
+  <div class="tabs" id="tabs">
+    <div class="tab" data-v="home"><span class="ti">🏠</span>Início</div>
+    <div class="tab" data-v="coach"><span class="ti">💬</span>Coach</div>
+    <div class="tab" data-v="insights"><span class="ti">📊</span>Insights</div>
+    <div class="tab" data-v="plano"><span class="ti">🗓️</span>Plano</div>
+    <div class="tab" data-v="perfil"><span class="ti">👤</span>Perfil</div>
+  </div>
+</div>
+<script>
+const C=Object.assign({askClaude:async function(pr){return window.__coach(pr);},runScheduledTask:async function(){return true;}},(window.cowork||{})); const $=(s,r)=>(r||document).querySelector(s);
+const LS=(k,d)=>{try{const v=localStorage.getItem(k);return v?JSON.parse(v):d;}catch(e){return d;}};
+const SET=(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v));}catch(e){}};
+const APP={cache:{},ctx:null};
+const iso=(d)=>d.toISOString().slice(0,10),R=(n)=>Math.round(n),R5=(n)=>Math.round(n/5)*5,R50=(n)=>Math.round(n/50)*50;
+const mapSport=(t)=>{t=(t||"").toLowerCase();if(t.includes("run")||t.includes("walk"))return"Corrida";if(t.includes("cycl")||t.includes("bik"))return"Bike";if(t.includes("swim"))return"Natação";if(t.includes("strength"))return"Força";return"Treino";};
+const ICON={Corrida:"🏃",Bike:"🚴",Natação:"🏊",Força:"🏋️",Descanso:"🌿",Treino:"•"};
+const DOW=["Dom","Seg","Ter","Qua","Qui","Sex","Sáb"];
+async function gm(name,args){ if(C.callMcpTool){  var r=await C.callMcpTool("mcp__garmin__"+name,args||{});  var o=r&&r.structuredContent;  if(o==null&&r){try{o=JSON.parse(r.content[0].text);}catch(e){o=null;}}  var p=(o&&o.result!==undefined)?o.result:o;  if(typeof p==="string"){try{p=JSON.parse(p);}catch(e){}}  return p; } await new Promise(function(rz){setTimeout(rz,120);}); var m=window.MOCK[name]; return (typeof m==="function")?m(args):m;}
+
+/* score de prontidão */
+function readinessScore(M){let s=100;if(M.hrvStatus==="UNBALANCED")s-=25;else if(M.hrvWeekly&&M.hrvBaselineLow&&M.hrvWeekly-M.hrvBaselineLow<=2)s-=8;if(M.sleepScore){if(M.sleepScore<50)s-=20;else if(M.sleepScore<60)s-=10;else if(M.sleepScore<70)s-=4;}if(M.statusKey==="OVERREACHING")s-=30;if(M.acwrStatus==="HIGH")s-=15;if(M.tsb!=null){if(M.tsb<=-25)s-=15;else if(M.tsb<=-15)s-=8;}return Math.max(5,Math.min(100,R(s)));}
+function scoreMeta(v){if(v>=75)return{l:"Ótimo",c:"var(--grn)"};if(v>=60)return{l:"Bom",c:"var(--grn)"};if(v>=45)return{l:"Moderado",c:"var(--amb)"};return{l:"Cuidado",c:"var(--red)"};}
+function ring(v,color,size){size=size||150;const r=54,circ=2*Math.PI*r,off=circ*(1-v/100);return '<svg width="'+size+'" height="'+size+'" viewBox="0 0 128 128"><circle cx="64" cy="64" r="54" fill="none" stroke="#18241f" stroke-width="10"/><circle cx="64" cy="64" r="54" fill="none" stroke="'+color+'" stroke-width="10" stroke-linecap="round" stroke-dasharray="'+circ+'" stroke-dashoffset="'+off+'" transform="rotate(-90 64 64)" style="filter:drop-shadow(0 0 5px '+color+')"/></svg>';}
+function sparkline(trend){const t=(trend||[]).filter(x=>typeof x.weekly_avg_hrv_ms==="number");if(t.length<2)return"";const w=380,h=60,pad=6,v=t.map(x=>x.weekly_avg_hrv_ms),mn=Math.min(...v)-2,mx=Math.max(...v)+2;const pts=t.map((x,i)=>[pad+(w-2*pad)*(i/(t.length-1)),h-pad-(h-2*pad)*((x.weekly_avg_hrv_ms-mn)/(mx-mn||1)),x.status]);return '<svg class="spark" viewBox="0 0 '+w+' '+h+'" preserveAspectRatio="none"><polyline points="'+pts.map(p=>p[0].toFixed(1)+","+p[1].toFixed(1)).join(" ")+'" fill="none" stroke="#34D399" stroke-width="2.2" style="filter:drop-shadow(0 0 3px #34D399)"/>'+pts.map(p=>'<circle cx="'+p[0].toFixed(1)+'" cy="'+p[1].toFixed(1)+'" r="2.6" fill="'+(p[2]==="UNBALANCED"?"#F87171":"#34D399")+'"/>').join("")+'</svg>';}
+function computeRisk(M){let s=0;const f=[];if(M.acwrStatus==="HIGH"){s+=2;f.push("Carga aguda alta (ACWR)");}if(M.loadRatio>1.3){s+=2;f.push("Salto de carga");}if(M.tsb!=null&&M.tsb<=-20){s+=2;f.push("Fadiga alta (TSB "+M.tsb+")");}else if(M.tsb!=null&&M.tsb<=-10){s+=1;f.push("Fadiga moderada (TSB "+M.tsb+")");}if(M.hrvStatus==="UNBALANCED"){s+=2;f.push("HRV desequilibrado");}if(M.sleepScore&&M.sleepScore<55){s+=1;f.push("Sono abaixo do ideal");}if(M.statusKey==="OVERREACHING"){s+=3;f.push("Overreaching");}return{level:s>=4?"Alto":s>=2?"Moderado":"Baixo",factors:f.length?f:["Sem alertas hoje"]};}
+function readiness(M,risk,ctx){let st=(M.hrvStatus==="UNBALANCED"||risk.level==="Alto"||M.statusKey==="OVERREACHING")?"red":((M.sleepScore&&M.sleepScore<55)||(M.tsb!=null&&M.tsb<=-15)||risk.level==="Moderado")?"amber":"green";if(ctx==="dor")st="red";if(ctx==="dormiu")st=st==="green"?"amber":"red";return st;}
+const EXWEEK={1:[{sport:"Força",z:"—",min:45},{sport:"Natação",z:"Z2",min:30}],2:[{sport:"Corrida",z:"Z2",min:45}],3:[{sport:"Bike",z:"Z2",min:75},{sport:"Natação",z:"Z2",min:30}],4:[{sport:"Corrida",z:"Z3–limiar",min:45,quality:true},{sport:"Força",z:"—",min:30}],5:[{sport:"Descanso",z:"—",min:20}],6:[{sport:"Bike",z:"Z2",min:120}],0:[{sport:"Corrida",z:"Z2",min:75}]};
+function planFromImport(){const p=LS("copiloto_plano_v1");if(!p||!p.dias)return null;const map={Dom:0,Seg:1,Ter:2,Qua:3,Qui:4,Sex:5,"Sáb":6,Sab:6};const wk={};p.dias.forEach(d=>{const di=map[d.dia];if(di==null)return;wk[di]=(d.sessoes||[]).map(s=>({sport:(s.esporte||"").replace("Natacao","Natação").replace("Forca","Força"),z:s.zona||"—",min:s.duracao_min||null}));});return wk;}
+
+/* dados diários (cache) */
+async function daily(){ if(APP.daily)return APP.daily; const today=new Date();let brief=await gm("get_daily_training_brief",{date:iso(today)});let ud=today;
+  if(!brief||(!brief.training_load&&!brief.sleep)){ud=new Date(today.getTime()-864e5);brief=await gm("get_daily_training_brief",{date:iso(ud)});}
+  const status=await gm("get_training_status",{date:iso(ud)}).catch(()=>null);const hrv=await gm("get_hrv_trend",{start_date:iso(new Date(ud.getTime()-14*864e5)),end_date:iso(ud)}).catch(()=>null);const acts=await gm("get_activities",{limit:12}).catch(()=>null);
+  const tl=(brief&&brief.training_load)||{},sl=(brief&&brief.sleep)||{},hv=(brief&&brief.hrv)||{};
+  const done=((acts&&acts.activities)||[]).filter(a=>(a.start_time||"").slice(0,10)===iso(ud)).map(a=>({sport:mapSport(a.type),name:a.name,min:a.duration_seconds?R(a.duration_seconds/60):null,maxHr:a.max_hr_bpm}));
+  const M={sleepHours:sl.sleep_hours,sleepScore:sl.sleep_score,hrvStatus:hv.status,hrvLast:hv.last_night_avg_hrv_ms,hrvWeekly:hv.weekly_avg_hrv_ms,hrvBaselineLow:hv.baseline_balanced_low_ms,statusKey:((tl.training_status_feedback||"").split("_")[0]),balance:status&&status.training_balance_feedback,tsb:tl.tsb,vo2:tl.vo2_max,acwrStatus:tl.acwr_status,loadRatio:tl.load_ratio,fadiga:(tl.tsb!=null&&tl.tsb<=-20)?"Alta":(tl.tsb!=null&&tl.tsb<=-10)?"Moderada":"Baixa"};
+  APP.daily={M,done,ud,trend:(hrv&&hrv.trend)||[]};return APP.daily;}
+
+const STMAP={green:{l:"Ótimo",c:"var(--grn)",t:"g"},amber:{l:"Atenção",c:"var(--amb)",t:"a"},red:{l:"Cuidado",c:"var(--red)",t:"r"}};
+
+/* ---------- HOME ---------- */
+async function home(m){ const {M,done,trend}=await daily(); const sc=readinessScore(M),sm=scoreMeta(sc);
+  const perfil=LS("copiloto_perfil_v1"); const nome=perfil?"":""; const risk=computeRisk(M),st=readiness(M,risk,null);
+  const plan=planFromImport()||EXWEEK; const dow=(new Date()).getDay(); const sug=(plan[dow]||[]).find(s=>s.sport!=="Descanso");
+  const conf=st==="green"?85:st==="amber"?60:35;
+  m.innerHTML=
+   '<div class="hdr"><div><h1>Bom dia, Lucas 👋</h1><p>Seu Copiloto de performance</p></div><div class="iconbtn">🔔</div></div>'+
+   '<div class="card hero"><div class="orb"></div><h2>Pronto para decidir seu dia?</h2><p>Transformo seus dados em uma decisão simples.</p><div class="ask">Perguntar algo…<span class="mic">🎙️</span></div></div>'+
+   '<div class="sec"><h3>Resumo do dia</h3><span class="a">agora</span></div>'+
+   '<div class="card" style="text-align:center"><div class="ring">'+ring(sc,sm.c)+'<div class="ctr"><div class="n" style="color:'+sm.c+'">'+sc+'</div><div class="l">'+sm.l+' · prontidão</div></div></div>'+
+     '<div class="chips">'+
+       '<div class="chip"><div class="ic">😴</div><div class="v">'+(M.sleepHours?M.sleepHours.toFixed(1)+"h":"—")+'</div><div class="k">Sono</div><div class="s" style="color:'+(M.sleepScore&&M.sleepScore<60?"var(--amb)":"var(--grn)")+'">'+(M.sleepScore||"—")+'</div></div>'+
+       '<div class="chip"><div class="ic">❤️</div><div class="v">'+(M.hrvLast||"—")+'</div><div class="k">HRV ms</div><div class="s" style="color:'+(M.hrvStatus==="UNBALANCED"?"var(--red)":"var(--grn)")+'">'+(M.hrvStatus==="UNBALANCED"?"Atenção":"Ok")+'</div></div>'+
+       '<div class="chip"><div class="ic">⚡</div><div class="v">'+(M.tsb!=null?M.tsb:"—")+'</div><div class="k">TSB</div><div class="s" style="color:'+(M.fadiga==="Alta"?"var(--red)":M.fadiga==="Moderada"?"var(--amb)":"var(--grn)")+'">'+M.fadiga+'</div></div>'+
+     '</div></div>'+
+   '<div class="sec"><h3>Próximo treino sugerido</h3></div>'+
+   '<div class="card next"><div class="info"><p class="t">'+(done.length>=2?"Dia cumprido — recuperar":(sug?(ICON[sug.sport]+" "+sug.sport+(sug.min?" · "+sug.min+"min":"")):"Descanso"))+'</p><p class="d">'+(done.length>=2?"você já treinou "+done.length+"x hoje":(st==="green"?"prontidão boa — pode seguir":st==="amber"?"vá com o pé no freio":"corpo pede cautela"))+'</p></div><div class="cring">'+ring(conf,st==="red"?"var(--red)":st==="amber"?"var(--amb)":"var(--grn)",62)+'<div class="c">'+conf+'%</div></div></div>'+
+   '<div class="sec"><h3>Tendência HRV · 14 dias</h3></div><div class="card">'+(trend.length?sparkline(trend):'<p class="mut">sem dados</p>')+'</div>'+
+   '<div class="card quote"><div class="orb" style="opacity:.5"></div><div class="q">Dados são importantes. Contexto é poder.</div><div class="by">— seu Copiloto</div></div>';
+}
+
+/* ---------- COACH (decisão + perguntar) ---------- */
+async function coach(m){ const {M,done,ud}=await daily(); const risk=computeRisk(M); function draw(ctx){ const st=readiness(M,risk,ctx);const sm=STMAP[st];
+  const plan=planFromImport()||EXWEEK,dow=ud.getDay();const dc=done.length,names=done.map(d=>d.name||d.sport).join(" + ");
+  const rest=(plan[dow]||[]).length===1&&(plan[dow]||[])[0].sport==="Descanso";const doneSp=done.map(d=>d.sport);const sug=(plan[dow]||[]).filter(s=>s.sport!=="Descanso"&&!doneSp.includes(s.sport))[0];
+  let head; if(ctx==="dor")head="Dor é sinal de parar — hoje sem impacto. Descanso ou mobilidade leve; se durar 3–4 dias, procure fisio/médico.";
+  else if(dc>=2)head="Você já fez "+dc+" treinos hoje ("+names+"). Dia cumprido — foco em recuperar. "+(st==="red"?"Sua carga pede recuo.":"Hidrate e durma bem.");
+  else if(dc>=1)head="Você já fez "+names+". Se sua assessoria previu 2ª sessão, "+(st==="green"?"pode seguir":"faça-a leve")+"; senão, recupere.";
+  else if(rest)head="Hoje é dia leve/descanso. Aproveite para recuperar.";
+  else head=st==="red"?"Hoje o corpo pede cautela — leve (Z1–Z2) ou descanso.":st==="amber"?"Dá para treinar com o pé no freio.":"Prontidão boa: pode seguir sua sessão, começando leve.";
+  const rows=[['❤️','HRV',(M.hrvLast||"—")+" ms",M.hrvStatus==="UNBALANCED"?"Atenção":"Ótimo",M.hrvStatus==="UNBALANCED"?"var(--red)":"var(--grn)","rgba(52,211,153,.14)"],
+    ['😴','Sono',(M.sleepHours?M.sleepHours.toFixed(1)+"h":"—"),(M.sleepScore>=70?"Ótimo":M.sleepScore>=55?"Ok":"Baixo"),(M.sleepScore>=70?"var(--grn)":M.sleepScore>=55?"var(--amb)":"var(--red)"),"rgba(96,165,250,.14)"],
+    ['🔥','Fadiga',M.fadiga,M.fadiga==="Alta"?"Alto":M.fadiga==="Moderada"?"Médio":"Ok",M.fadiga==="Alta"?"var(--red)":M.fadiga==="Moderada"?"var(--amb)":"var(--grn)","rgba(245,158,11,.14)"],
+    ['⚡','Status',(M.statusKey||"—").toLowerCase(),(M.statusKey==="OVERREACHING"?"Alta":M.statusKey==="PRODUCTIVE"?"Ótimo":"Médio"),(M.statusKey==="OVERREACHING"?"var(--red)":"var(--grn)"),"rgba(248,113,113,.14)"]];
+  const btns=[["dormiu","Dormi mal"],["30min","Só 30 min"],["pulou","Pulei o treino"],["dor","Estou com dor"]].map(b=>'<span class="pill'+(ctx===b[0]?" on":"")+'" data-c="'+b[0]+'">'+b[1]+'</span>').join("");
+  m.innerHTML='<div class="hdr"><div><h1>Coach IA</h1><p style="color:var(--grn)">● Online · lendo seu Garmin</p></div><div class="iconbtn">⚙️</div></div>'+
+   '<div class="bubble me">Posso treinar forte hoje?</div>'+
+   '<div class="card"><p class="mut" style="margin:0 0 8px">Analisando seus dados…</p><p style="margin:0 0 10px;font-weight:700;font-size:15px">'+head+'</p>'+
+     rows.map(r=>'<div class="mrow"><div class="mic" style="background:'+r[5]+'">'+r[0]+'</div><div class="ml">'+r[1]+'</div><div class="mv">'+r[2]+'</div><div class="ms" style="color:'+r[4]+'">'+r[3]+'</div></div>').join("")+
+     (sug&&dc<2&&!rest&&ctx!=="dor"?'<div style="margin-top:12px;background:#0c130f;border:1px solid var(--line);border-radius:14px;padding:12px"><span class="tag g">sugestão</span> <b>'+ICON[sug.sport]+" "+sug.sport+'</b> — '+(sug.z&&sug.z!=="—"?sug.z+" · ":"")+(ctx==="30min"?"30 min":(sug.min?sug.min+" min":""))+(st==="amber"?" (reduzido)":st==="red"?" (leve)":"")+'</div>':"")+
+     '<div class="pills"><span style="width:100%;font-size:11px;color:var(--mut);text-transform:uppercase;letter-spacing:.5px">E se…</span>'+btns+'</div>'+
+   '</div>'+
+   '<div class="sec"><h3>Pergunte ao seu coach</h3></div><div class="pills" id="qq">'+["Posso treinar hoje?","Por que meu HRV caiu?","Como foi minha semana?","Qual treino ideal?"].map(q=>'<span class="pill" data-q="'+q+'">'+q+'</span>').join("")+'</div>'+
+   '<div class="field" style="margin-top:12px"><input id="ask" placeholder="Pergunte qualquer coisa…"></div><button class="btnp" id="send">Perguntar</button><div id="ans"></div>';
+  m.querySelectorAll(".pill[data-c]").forEach(b=>b.onclick=()=>draw(APP.ctx===b.dataset.c?(APP.ctx=null):(APP.ctx=b.dataset.c)));
+  m.querySelectorAll(".pill[data-q]").forEach(b=>b.onclick=()=>{$("#ask",m).value=b.dataset.q;});
+  $("#send",m).onclick=async()=>{const q=$("#ask",m).value.trim();if(!q)return;const ans=$("#ans",m);ans.innerHTML='<div class="bubble me">'+q+'</div><div class="bubble">Pensando…</div>';
+    if(!C.askClaude){ans.querySelector(".bubble:last-child").textContent="Abra no Cowork para eu responder.";return;}
+    try{const res=await C.askClaude("Voce e o Coach IA do Copiloto do Corpo (triatleta, seguranca primeiro, nao e conselho medico). Responda em pt-BR, curto e direto (2-3 frases), com base nos dados. Pergunta: "+q,[{metrics:M,treinos_hoje:done}]);let t=(typeof res==="string")?res:(res&&(res.text||res.output||res.content))||"";ans.querySelector(".bubble:last-child").textContent=t.trim()||"—";}catch(e){ans.querySelector(".bubble:last-child").textContent="Não consegui responder agora.";}};
+ } APP.ctx=null; draw(null);
+}
+
+/* ---------- INSIGHTS (zonas + risco) ---------- */
+async function insights(m){ const {M,trend}=await daily(); const risk=computeRisk(M);
+  const lt=await gm("get_lactate_threshold").catch(()=>null),swim=await gm("get_swim_css_pace").catch(()=>null),ftp=await gm("get_cycling_ftp").catch(()=>null);
+  const lthr=lt&&lt.lactate_threshold_heart_rate_bpm,pw=lt&&lt.functional_threshold_power_watts;
+  function hrZ(l){const b=[[0,.81],[.81,.89],[.90,.94],[.95,1],[1,1.2]];return b.map((p,i)=>i===0?"< "+R(.81*l):i===4?"≥ "+R(l):R(p[0]*l)+"–"+R(p[1]*l));}
+  const ZN=["Recuperação","Aeróbico","Tempo","Limiar","VO₂máx"];
+  let html='<div class="hdr"><div><h1>Insights</h1><p>Padrões e zonas · do seu Garmin</p></div><div class="iconbtn">ⓘ</div></div>';
+  html+='<div class="card"><div class="sec" style="margin:0 0 6px"><h3>Radar de risco</h3><span class="tag '+(risk.level==="Alto"?"r":risk.level==="Moderado"?"a":"g")+'">'+risk.level+'</span></div>'+risk.factors.map(f=>'<div class="mrow"><div class="mic" style="background:rgba(245,158,11,.14)">•</div><div class="ml">'+f+'</div></div>').join("")+'</div>';
+  if(lthr){const hz=hrZ(lthr);html+='<div class="card"><div class="sec" style="margin:0 0 8px"><h3>🏃 Zonas de corrida</h3><span class="mut">FC limiar '+lthr+' bpm'+(pw?" · "+pw+" W":"")+'</span></div><table><tr><th>Zona</th><th>FC</th></tr>'+ZN.map((z,i)=>'<tr><td><b>Z'+(i+1)+'</b> '+z+'</td><td>'+hz[i]+' bpm</td></tr>').join("")+'</table></div>';}
+  if(swim&&swim.estimated_css){const tp=swim.training_paces||{};html+='<div class="card"><div class="sec" style="margin:0 0 8px"><h3>🏊 Natação</h3><span class="mut">CSS '+swim.estimated_css.pace_per_100m+'</span></div><table><tr><th>Zona</th><th>/100m</th></tr><tr><td>Aeróbico</td><td>'+(tp.endurance_z2&&tp.endurance_z2.pace_per_100m)+'</td></tr><tr><td>Limiar</td><td>'+(tp.threshold_css&&tp.threshold_css.pace_per_100m)+'</td></tr><tr><td>VO₂</td><td>'+(tp.vo2_intervals&&tp.vo2_intervals.pace_per_100m)+'</td></tr></table></div>';}
+  const fb=ftp&&ftp.functional_threshold_power_watts;
+  html+='<div class="card"><div class="sec" style="margin:0 0 6px"><h3>🚴 Bike</h3></div>'+(fb?'<p class="mut">FTP '+fb+' W</p>':'<p class="mut">FTP ainda não detectado — faça um pedal de limiar. Zonas por FC enquanto isso (limiar ~'+(lthr?lthr-8:"—")+' bpm).</p>')+'</div>';
+  html+='<div class="card"><div class="sec" style="margin:0 0 6px"><h3>Tendência HRV</h3></div>'+(trend.length?sparkline(trend):"—")+'<p class="mut">Verde equilibrado · vermelho atenção. Vale a tendência.</p></div>';
+  m.innerHTML=html;
+}
+
+/* ---------- PLANO (semana + importar) ---------- */
+async function plano(m){ const {ud}=await daily().catch(()=>({ud:new Date()})); const plan=planFromImport()||EXWEEK,usei=!!planFromImport(),dow=(new Date()).getDay();
+  let html='<div class="hdr"><div><h1>Plano</h1><p>'+(usei?"importado da assessoria":"exemplo — importe o seu")+'</p></div><div class="iconbtn">🗓️</div></div>';
+  html+='<div class="card">'+[1,2,3,4,5,6,0].map(di=>{const ss=plan[di]||[];return '<div class="day" style="'+(di===dow?"border-color:var(--grn)":"")+'"><p class="dn">'+DOW[di]+(di===dow?" · hoje":"")+'</p>'+(ss.length?ss.map(s=>'<div style="font-size:13px;margin:2px 0">'+(ICON[s.sport]||"•")+" <b>"+s.sport+"</b>"+(s.z&&s.z!=="—"?" · "+s.z:"")+(s.min?" · "+s.min+"min":"")+'</div>').join(""):'<span class="mut">—</span>')+'</div>';}).join("")+'</div>';
+  html+='<div class="sec"><h3>Importar plano da assessoria</h3></div><div class="card"><p class="mut" style="margin:0 0 8px">Cole a planilha / PDF / WhatsApp — a IA estrutura.</p><div class="field"><textarea class="big" id="pl">Seg: Força 45min + Natação 1000m\nTer: Corrida 40min Z2\nQua: Bike Z2 1h + Natação 1200m\nQui: Corrida 8x400m forte / Força 30min\nSex: Descanso\nSáb: Bike longo 2h\nDom: Corrida longa 14km</textarea></div><button class="btnp" id="imp">Interpretar e salvar</button><div class="toast" id="pt"></div><div id="po"></div></div>';
+  m.innerHTML=html;
+  $("#imp",m).onclick=async()=>{const txt=$("#pl",m).value.trim();const pt=$("#pt",m);if(!C.askClaude){pt.textContent="Abra no Cowork.";return;}pt.textContent="Interpretando…";
+    try{const res=await C.askClaude('Parser de plano. Converta em JSON ESTRITO {"dias":[{"dia":"Seg","sessoes":[{"esporte":"Corrida|Bike|Natacao|Forca|Descanso","tipo":"","zona":"","duracao_min":num_ou_null,"obs":""}]}]}. Normalize dias Seg..Dom; 2 sessoes se houver; min em minutos; NAO invente; responda SO JSON.',[{plano:txt}]);
+      let raw=(typeof res==="string")?res:(res&&(res.text||res.output||res.content))||"";const a=raw.indexOf("{"),b=raw.lastIndexOf("}");const plan2=JSON.parse(raw.slice(a,b+1));SET("copiloto_plano_v1",plan2);pt.textContent="Salvo ✓ — recarregue o Plano/Decisão para ver.";}catch(e){pt.textContent="Não consegui interpretar — tente 1 dia por linha.";}};
+}
+
+/* ---------- PERFIL ---------- */
+async function perfil(m){ const P=LS("copiloto_perfil_v1")||{objetivo:{esportes:["Triatlo"],prova:{tem:false},fase:"base"},estrutura:{dias_semana:"5–6",sessoes_dia:"Às vezes 2",hora_acordar:"06:00"},coach:{tem:true,modo:"coexistir"}};
+  m.innerHTML='<div class="hdr"><div><h1>Perfil</h1><p>Lucas · triatleta</p></div><div class="iconbtn">👤</div></div>'+
+   '<div class="card">'+
+     '<div class="mrow"><div class="mic" style="background:rgba(52,211,153,.14)">🎯</div><div class="ml">Objetivo</div><div class="mv">'+(P.objetivo.prova&&P.objetivo.prova.tem?"prova":(P.objetivo.objetivo_sem_prova||"base"))+'</div></div>'+
+     '<div class="mrow"><div class="mic" style="background:rgba(96,165,250,.14)">🏊</div><div class="ml">Esportes</div><div class="mv" style="font-size:12.5px">'+(P.objetivo.esportes||["Triatlo"]).join(", ")+'</div></div>'+
+     '<div class="mrow"><div class="mic" style="background:rgba(245,158,11,.14)">📆</div><div class="ml">Estrutura</div><div class="mv" style="font-size:12.5px">'+P.estrutura.dias_semana+"d · "+P.estrutura.sessoes_dia+'</div></div>'+
+     '<div class="mrow"><div class="mic" style="background:rgba(52,211,153,.14)">🤝</div><div class="ml">Assessoria</div><div class="mv">'+(P.coach&&P.coach.tem?"sim":"não")+'</div></div>'+
+   '</div>'+
+   '<div class="sec"><h3>Editar rápido</h3></div><div class="card"><div class="field"><label>Objetivo dos próximos meses</label><select id="obj"><option>Construir base</option><option>Manter</option><option>Evoluir velocidade</option><option>Prova marcada</option></select></div><div class="field"><label>Sessões por dia</label><select id="ses"><option>1 por dia</option><option selected>Às vezes 2</option><option>Quase sempre 2</option></select></div><div class="field"><label>Horário que acorda</label><input type="time" id="hr" value="'+(P.estrutura.hora_acordar||"06:00")+'"></div><button class="btnp" id="sv">Salvar perfil</button><div class="toast" id="pf"></div></div>'+
+   '<div class="sec"><h3>⏰ Decisão automática</h3></div><div class="card"><p class="mut" style="margin:0 0 10px">Toda manhã o Copiloto lê seu Garmin e manda a decisão do dia. <span style="color:var(--grn)">Ativo</span>.</p><button class="btng" id="test">Testar agora</button><div class="toast" id="tt"></div></div>';
+  $("#sv",m).onclick=()=>{const np=Object.assign({},P);np.objetivo=Object.assign({},P.objetivo,{objetivo_sem_prova:$("#obj",m).value});np.estrutura=Object.assign({},P.estrutura,{sessoes_dia:$("#ses",m).value,hora_acordar:$("#hr",m).value});SET("copiloto_perfil_v1",np);$("#pf",m).textContent="Perfil salvo ✓";};
+  $("#test",m).onclick=async()=>{const tt=$("#tt",m);tt.textContent="Disparando…";try{if(C.runScheduledTask){await C.runScheduledTask("copiloto-decisao-matinal");tt.textContent="Disparado — veja no chat.";}else tt.textContent="Abra no Cowork.";}catch(e){tt.textContent="Erro ao disparar.";}};
+}
+
+const VIEWS={home,coach,insights,plano,perfil};
+async function setTab(id){document.querySelectorAll(".tab").forEach(t=>t.classList.toggle("on",t.dataset.v===id));const s=$("#screen");s.innerHTML='<div class="loading">Carregando…</div>';window.scrollTo(0,0);try{await VIEWS[id](s);}catch(e){s.innerHTML='<div class="err">'+(e&&e.message?e.message:e)+'</div>';}}
+document.querySelectorAll(".tab").forEach(t=>t.onclick=()=>setTab(t.dataset.v));
+setTab("home");
+</script>
+</body>
+</html>

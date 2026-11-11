@@ -1,0 +1,69 @@
+{
+  "_note": "Dump real das ferramentas Garmin em 2026-08-01 (usuário Lucas). Entrada de garmin-to-ctx.mjs.",
+  "hrv_trend": {
+    "start_date": "2026-07-26",
+    "end_date": "2026-08-01",
+    "trend": [
+      { "date": "2026-07-26", "weekly_avg_hrv_ms": 32, "last_night_5min_high_hrv_ms": 55, "status": "UNBALANCED" },
+      { "date": "2026-07-27", "weekly_avg_hrv_ms": 37, "last_night_5min_high_hrv_ms": 83, "status": "BALANCED" },
+      { "date": "2026-07-28", "weekly_avg_hrv_ms": 36, "last_night_5min_high_hrv_ms": 81, "status": "BALANCED" },
+      { "date": "2026-07-29", "weekly_avg_hrv_ms": 36, "last_night_5min_high_hrv_ms": 48, "status": "BALANCED" },
+      { "date": "2026-07-30", "weekly_avg_hrv_ms": 37, "last_night_5min_high_hrv_ms": 48, "status": "BALANCED" },
+      { "date": "2026-07-31", "weekly_avg_hrv_ms": 37, "last_night_5min_high_hrv_ms": 58, "status": "BALANCED" },
+      { "date": "2026-08-01", "weekly_avg_hrv_ms": 38, "last_night_5min_high_hrv_ms": 64, "status": "BALANCED" }
+    ]
+  },
+  "sleep_summaries": [
+    { "date": "2026-08-01", "sleep_seconds": 25260, "sleep_score": 74, "sleep_score_qualifier": "FAIR", "avg_overnight_hrv": 34.0, "sleep_hours": 7.02 },
+    { "date": "2026-07-31", "sleep_seconds": 30660, "sleep_score": 89, "sleep_score_qualifier": "GOOD", "avg_overnight_hrv": 38.0, "sleep_hours": 8.52 },
+    { "date": "2026-07-30", "sleep_seconds": 26820, "sleep_score": 74, "sleep_score_qualifier": "FAIR", "avg_overnight_hrv": 34.0, "sleep_hours": 7.45 }
+  ],
+  "training_status": {
+    "date": "2026-08-01",
+    "training_status": 3,
+    "training_status_feedback": "OVERREACHING_1",
+    "acute_load": 503,
+    "chronic_load": 241,
+    "load_ratio": 2.0,
+    "acwr_status": "VERY_HIGH",
+    "acwr_percent": 100,
+    "optimal_chronic_load_min": 192.8,
+    "optimal_chronic_load_max": 361.5,
+    "vo2_max": 48.0
+  },
+  "stats": {
+    "date": "2026-08-01",
+    "resting_heart_rate_bpm": 63,
+    "last_7_days_avg_resting_hr": 64,
+    "avg_stress_level": 25,
+    "stress_qualifier": "BALANCED",
+    "body_battery_highest": 63,
+    "body_battery_lowest": 17,
+    "body_battery_current": 34
+  },
+  "activities": {
+    "activities": [
+      {
+        "id": 23816968613,
+        "name": "Cotia - PEDAL HR E 1H20'= Z2",
+        "type": "cycling",
+        "start_time": "2026-08-01 16:12:39",
+        "distance_meters": 18818.29,
+        "duration_seconds": 4800.59,
+        "moving_duration_seconds": 4787.59,
+        "avg_hr_bpm": 142.0,
+        "max_hr_bpm": 169.0
+      },
+      {
+        "id": 23804865344,
+        "name": "Cotia - RUN R 28' - PLANO",
+        "type": "running",
+        "start_time": "2026-07-31 17:04:31",
+        "duration_seconds": 1650.93,
+        "moving_duration_seconds": 1648.93,
+        "avg_hr_bpm": 142.0,
+        "max_hr_bpm": 164.0
+      }
+    ]
+  }
+}
